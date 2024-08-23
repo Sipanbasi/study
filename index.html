@@ -6,8 +6,23 @@
     <title>Unity WebGL Player | affordance</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
+        <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-firestore.js"></script>
   </head>
   <body>
+     <script>
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyBOIKJ-u6wHuTgBSUdmTQ_IQtAzIrwxo9I",
+  authDomain: "testrez-b74f6.firebaseapp.com",
+  projectId: "testrez-b74f6",
+  storageBucket: "testrez-b74f6.appspot.com",
+  messagingSenderId: "757898537685",
+  appId: "1:757898537685:web:5ec2da1e6dd9f6b8c0105c"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+    </script>
     <div id="unity-container" class="unity-desktop">
       <canvas id="unity-canvas" width=960 height=600 tabindex="-1"></canvas>
       <div id="unity-loading-bar">
@@ -106,6 +121,7 @@
         createUnityInstance(canvas, config, (progress) => {
           progressBarFull.style.width = 100 * progress + "%";
               }).then((unityInstance) => {
+           window.unityInstance = unityInstance;
                 loadingBar.style.display = "none";
                 fullscreenButton.onclick = () => {
                   unityInstance.SetFullscreen(1);
